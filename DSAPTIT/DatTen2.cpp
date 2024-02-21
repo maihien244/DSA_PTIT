@@ -11,37 +11,36 @@ int check(int x[], int n, int k) {
     return 1;
 }
 
+void print(int x[], int k) {
+    for(int i = 1; i <= k; ++i) {
+        cout << (char)(x[i]+64);
+    }
+    cout << endl;
+}
+
 int main() {
     int t;
     cin >> t;
     while(t--) {
         int n, k;
-        cin >> n>> k;
-        int a[k+1];
+        cin >> n >> k;
+        int x[k+1];
         for(int i = 1; i <= k; ++i) {
-            cin >> a[i];
+            x[i] = i;
         }
-        if(check(a, n, k)) {
-            for(int i = 1; i <=k; ++i) {
-                cout << n-k+i << " ";
-            }
-            cout << endl;
-        }
-        else {
+        print(x, k);
+        while(!check(x, n, k)) {
             int i = k;
-            while(i > 0 && a[i] == n-k+i) {
+            while(i > 0 && x[i] == n-k+i) {
                 i--;
             }
             if(i > 0) {
-                a[i]++;
+                x[i]++;
                 for(int j = i+1; j <= k; ++j) {
-                    a[j] = a[i]+j-i;
+                    x[j] = x[i]+j-i;
                 }
             }
-            for(int i = 1; i <= k; ++i) {
-                cout << a[i] << " ";
-            }
-            cout << endl;
+            print(x, k);
         }
     }
 }

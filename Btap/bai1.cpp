@@ -1,27 +1,39 @@
-// CPP program to demonstrate the
-// set::find() function
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
+#include <stack>
+
 using namespace std;
-int main()
-{
 
-	// Initialize set
-	set<int> s;
+int arr[100][100];
+int n;
 
-	s.insert(1);
-	s.insert(4);
-	s.insert(2);
-	s.insert(5);
-	s.insert(3);
-    s.erase(4);
-	// iterator pointing to
-	// position where 3 is
-	auto pos = s.find(3);
+void DFS(int u) {
+	map<int, int> xetDinh;
+	stack<int> dinh;
+	dinh.push(u);
+	cout << u << " ";
+	xetDinh[u] = 1;
+	while(!dinh.empty()) {
+		int tmp = dinh.top();
+		dinh.pop();
+		for(int i = 1; i <= n; ++i) {
+			if(!xetDinh[i] && arr[tmp][i]) {
+				dinh.push(tmp);
+				dinh.push(i);
+				cout << i << " ";
+				xetDinh[i] = 1;
+				break;
+			}
+		}
+	}
+}
 
-	// prints the set elements
-	cout << "The set elements after 3 are: ";
-	for (auto it = pos; it != s.end(); it++)
-		cout << *it << " ";
-
-	return 0;
+int main() {
+	n = 4;
+	for(int i = 1; i <= 4; ++i) {
+		for(int j = 1; j <= 4; ++j) {
+			cin >> arr[i][j];
+		}
+	}
+	DFS(1);
 }
