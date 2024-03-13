@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -8,17 +8,25 @@ int main() {
     while(t--) {
         int n;
         cin >> n;
-        int arr[n];
-        string point = "YES";
+        map<int, int> a;
+        int tmp;
         for(int i = 0; i < n; ++i) {
-            cin >> arr[i];
+            cin >> tmp;
+            a[tmp]++;
         }
-        for(int i = 0; i < n; ++i) {
-            if(arr[i] != arr[n-1-i]) {
-                point = "NO";
+        int check = 0;
+        for(auto x: a) {
+            if(x.second > 1) {
+                tmp = x.first;
+                check = 1;
                 break;
             }
         }
-        cout << point << endl;
+        if(check) {
+            cout << tmp << endl;
+        }
+        else {
+            cout << "NO" << endl;
+        }
     }
 }

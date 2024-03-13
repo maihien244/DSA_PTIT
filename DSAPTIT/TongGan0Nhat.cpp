@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -9,20 +10,17 @@ int main() {
         int n;
         cin >> n;
         int x[n];
+        int tmp = 100000;
         for(int i = 0; i < n; ++i) {
             cin >> x[i];
         }
-        int kt = 0;
-        for(int i = 0; i <n-1; ++i) {
+        for(int i = 0; i < n-1; ++i) {
             for(int j = i+1; j < n; ++j) {
-                if(x[i] == x[j]) { 
-                    cout << x[i] << endl;
-                    kt = 1;
+                if(abs(tmp) > abs(x[i]+x[j])) {
+                    tmp = x[i]+x[j];
                 }
             }
         }
-        if(!kt) {
-            cout << "NO" << endl;
-        }
+        cout << tmp << endl;
     }
 }

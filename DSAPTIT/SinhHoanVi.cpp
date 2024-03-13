@@ -32,7 +32,7 @@ int main() {
         cin >> n;
         int x[n+1];
         for(int i = 1; i <= n; ++i) {
-            x[i] = i;
+            x[i] = i; //O(n)
         }
         print(x, n);
         while(!check(x, n)) {
@@ -43,10 +43,10 @@ int main() {
             int ind = i+1;
             for(int j = i+1; j <= n; ++j) {
                 if(x[j] < x[ind] && x[j] > x[i]) {
-                    ind = j;
+                    ind = j; //O(n)
                 }
             }
-            swap(x[i], x[ind]);
+            swap(x[i], x[ind]); //0(1)
             for(int j = i+1; j < n; ++j) {
                 for(int l = j+1; l <= n; ++l) {
                     if(x[j] > x[l]) {

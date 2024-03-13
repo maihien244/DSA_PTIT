@@ -1,30 +1,42 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
+
+int find(int x[], int n, int k) {
+    int l = 0, r = n-1;
+    int mid = l + ((k-x[l])*(r-l)/(a[r]-a[l]));
+    while(l < r) {
+        if(x[mid] == k) return mid;
+        if(x[mid] < k) {
+            r = mid-1;
+            mid = l + ((k-x[l])*(r-l)/(a[r]-a[l]));
+        } else {
+            l = mid+1;
+            mid = l + ((k-x[l])*(r-l)/(a[r]-a[l]));
+        }
+    }
+}
 
 int main() {
     int t;
     cin >> t;
     while(t--) {
-        string str;
-        cin >> str;
-        int nho = 0, to = 0, bang = 0;
-        for(int i = 1; i < str.length(); ++i) {
-            if(str[i] > str[i-1]) {
-                ++to;
-            }
-            if(str[i] < str[i-1]) {
-                ++nho;
-            }
-            if(str[i] == str[i-1]) {
-                ++bang;
-            }
+        int n;
+        cin >> n;
+        map<int, int> x;
+        int tmp;
+        for(int i = 0; i < n; ++i) {
+            cin >> tmp;
+            x[tmp]++;
         }
-        if(to+bang == str.length()-1 || nho+bang == str.length()-1) {
-            cout << "YES" << endl;
+        int a[x.size()];
+        int k = 0, max = 0;
+        for(auto i: x) {
+            if(max > i.second) max = i.second;
+            a[k] = i.second;
+            k++;
         }
-        else {
-            cout << "NO" << endl;
-        }
+        sort(a, a+k);
+        int ind = find(a, k, max);
     }
 }
