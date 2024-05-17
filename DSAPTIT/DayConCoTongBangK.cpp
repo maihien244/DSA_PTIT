@@ -21,6 +21,9 @@ void Try(int i) {
 int main() {
      ios_base::sync_with_stdio(0);
      cin.tie(NULL); cout.tie(NULL);
+     int t;
+     cin >> t;
+     while(t--) {
           cin >> n >> k;
           x.resize(n);
           a.resize(n);
@@ -29,15 +32,21 @@ int main() {
           Try(0);
           if(ans.empty()) {
                cout << -1 << endl;
-          } else {
-            for(int i = ans.size()-1; i >= 0; --i) {
-                vector<int> tmp = ans[i];
-                for(int j = 0; j < tmp.size(); ++j) {
-                    if(tmp[j]) cout << x[j] << " ";
-                }
-                cout << endl;
-            }
-            cout << ans.size() << endl;
+               continue;
           }
-     
+          for(vector<int> &i: ans) {
+               vector<int> tmp;
+               for(int j = 0; j < n; ++j) {
+                    if(i[j]) tmp.push_back(x[j]);
+               }
+               cout << "[";
+               int length = tmp.size();
+               for(int j = 0; j < length-1; ++j) {
+                    cout << tmp[j] <<" ";
+               }
+               cout << tmp[length-1] << "] ";
+          }
+          cout << endl;
+          ans.clear();
+     }
 }

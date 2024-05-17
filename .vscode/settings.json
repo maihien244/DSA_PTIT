@@ -59,6 +59,8 @@
   "files.associations": {
     "iostream": "cpp",
     "ostream": "cpp",
-    "cstdlib": "cpp"
+    "cstdlib": "cpp",
+    "cmath": "cpp",
+    "random": "cpp"
   }
 }

@@ -1,28 +1,40 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
+int check(vector<int> tam) {
+    int cnt = 0;
+    for(int i = 0; i < tam.size(); ++i) {
+        if(tam[i] == 2) cnt++;
+    }
+    if((double)cnt/tam.size() > 0.5) return 1;
+    return 0;
+}
+
+int chuuyenSangTam(int n) {
+    vector<int> tam;
+    while(n) {
+        tam.push_back(n%3);
+        n /= 3;
+    }
+    if(check(tam)) {
+        for(int i = tam.size()-1; i >= 0; --i) cout << tam[i];
+        cout << " ";
+        return 1;
+    }
+    return 0;
+}
 
 int main() {
-    int t;
-    cin >> t;
+    int t; cin >> t;
     while(t--) {
-        int n;
-        cin >> n;
-        int x[n];
-        for(int i = 0; i < n; ++i) {
-            cin >> x[i];
-        }
-        int kt = 0;
-        for(int i = 0; i <n-1; ++i) {
-            for(int j = i+1; j < n; ++j) {
-                if(x[i] == x[j]) { 
-                    cout << x[i] << endl;
-                    kt = 1;
-                }
+        int n; cin >> n;
+        int i = 0;
+        while(n) {
+            if(chuuyenSangTam(i)) {
+                n--;
             }
+            i++;
         }
-        if(!kt) {
-            cout << "NO" << endl;
-        }
+        cout << endl;
     }
 }

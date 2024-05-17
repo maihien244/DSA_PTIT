@@ -1,24 +1,16 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
+map<int, int> fib;
+
+int getFib(int n) {
+    fib[0] = 0;
+    fib[1] = 1;
+    for(int i = 2; i <= n; ++i) fib[i] = fib[i-1] + fib[i-2];
+    return fib[n];
+}
 
 int main() {
-    int t;
-    cin >> t;
-    while(t--) {
-        int n;
-        cin >> n;
-        int cnt = 0;
-        if(n%2) {
-            cout << 0 << endl;
-        }
-        else {
-            for(int i = 2; i <= n; i += 2) {
-                if(n%i == 0) {
-                    ++cnt;
-                }
-            }
-            cout << cnt << endl;
-        }
-    }
+    int n; cin >> n;
+    cout << getFib(n);
 }
